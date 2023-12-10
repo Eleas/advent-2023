@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AdventOfCode2023;
+﻿using AdventOfCode2023;
 
 namespace AdventOfCode2023Tests
 {

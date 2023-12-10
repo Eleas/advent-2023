@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AdventOfCode2023
 {
-    internal class FetchData
+    public class FetchData
     {
         /// <summary>
         /// Reads input, chops it up into lines.
@@ -30,5 +30,15 @@ namespace AdventOfCode2023
 
             sr.Close();
         }
+
+        public static IEnumerable<string> PruneBeginning(char delimiter, 
+            IEnumerable<string> list) =>
+            list.Select(x => x[(x.IndexOf(delimiter) + 1)..].Trim());
+
+        public static IEnumerable<string> ChopToList(char delimiter, string line) =>
+            line.Split(delimiter, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+
+        public static List<string> GetPrunedList(char delimiter, IEnumerable<string> input) =>
+            PruneBeginning(delimiter, input).ToList();
     }
 }
