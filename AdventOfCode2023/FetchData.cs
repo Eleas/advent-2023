@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AdventOfCode2023
+﻿namespace AdventOfCode2023
 {
     public class FetchData
     {
@@ -20,7 +14,7 @@ namespace AdventOfCode2023
 
             do
             {
-                line = sr.ReadLine();
+                line = sr?.ReadLine() ?? string.Empty;
 
                 if (line != null && line != string.Empty) 
                 {
@@ -28,7 +22,7 @@ namespace AdventOfCode2023
                 }
             } while (line != null);
 
-            sr.Close();
+            sr?.Close();
         }
 
         public static IEnumerable<string> PruneBeginning(char delimiter, 

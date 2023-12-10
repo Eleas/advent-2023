@@ -1,13 +1,10 @@
-﻿using System.ComponentModel;
-using System.Drawing;
-using System.Linq;
-using System.Xml;
+﻿using System.Drawing;
 
 namespace AdventOfCode2023
 {
     public class Day2
     {
-        private static List<Color> Colors = new() { Color.Red, Color.Green, Color.Blue };
+        private static readonly List<Color> Colors = new() { Color.Red, Color.Green, Color.Blue };
 
         private static List<string> ColorList (List<Color> colors) => colors.Select(c => c.Name.ToLower()).ToList();
 
