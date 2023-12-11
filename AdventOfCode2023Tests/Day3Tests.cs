@@ -41,7 +41,7 @@ namespace AdventOfCode2023Tests
         [InlineData(1, 9, 3, 664)]
         public void ListNumbers_TestSchematic_ValidNumbers(int x, int y, int length, int value)
         {
-            var validNumbers = Day3.ListNumbers(FetchData.ChopToList('\n', _schematic));
+            var validNumbers = Day3.ListNumbers(ParseData.ChopToList('\n', _schematic));
 
             Assert.Contains<Number>(new Number(new Point(x, y), length, value), validNumbers);
         }
@@ -54,7 +54,7 @@ namespace AdventOfCode2023Tests
         [InlineData(4, true)]
         public void IsPartsNumber_TestSchematic_ValidParts(int index, bool isPart)
         {
-            var list = FetchData.ChopToList('\n', _schematic);
+            var list = ParseData.ChopToList('\n', _schematic);
             var validNumbers = Day3.ListNumbers(list);
 
             Assert.Equal(isPart, Day3.IsPartNumber(validNumbers.ElementAt(index), list));
@@ -63,7 +63,7 @@ namespace AdventOfCode2023Tests
         [Fact]
         public void IsPartsNumber_AskForSum_GetCorrectSum()
         {
-            var list = FetchData.ChopToList('\n', _schematic);
+            var list = ParseData.ChopToList('\n', _schematic);
             var validNumbers = Day3.ListNumbers(list);
 
             var parts = validNumbers.Select(x => Day3.IsPartNumber(x, list));
@@ -76,7 +76,7 @@ namespace AdventOfCode2023Tests
         [Fact]
         public void GetNeighborTo_GivePoint_GetNeighbors()
         {
-            var list = FetchData.ChopToList('\n', _schematic);
+            var list = ParseData.ChopToList('\n', _schematic);
             var validNumbers = Day3.ListNumbers(list);
 
             IEnumerable<Number> neighbors = Mapping.GetNeighbors(validNumbers, new Point(2, 5));
@@ -88,7 +88,7 @@ namespace AdventOfCode2023Tests
         public void GetNeighborTo_AsteriskPoints_GetGearSums()
         {
 
-            var list = FetchData.ChopToList('\n', _schematic);
+            var list = ParseData.ChopToList('\n', _schematic);
             var validNumbers = Day3.ListNumbers(list);
 
             List<Point> gearPoints = new()

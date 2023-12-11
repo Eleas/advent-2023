@@ -1,6 +1,6 @@
 ﻿namespace AdventOfCode2023
 {
-    public class FetchData
+    public class ParseData
     {
         /// <summary>
         /// Reads input, chops it up into lines.
@@ -53,5 +53,11 @@
         /// <returns>Split string.</returns>
         public static IEnumerable<string> ChopToList(char delimiter, string text) =>
             text.Split(delimiter, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+
+
+        public static IEnumerable<string> GetSection(string totalText, string beginning, string? end = null)
+        {
+            string contents = totalText.Substring(totalText.IndexOf(beginning));
+        }
     }
 }

@@ -15,7 +15,7 @@ namespace AdventOfCode2023Tests
         [Fact]
         public void GetListOfAllGames_TestInput_GetCorrectCountOfBlues()
         {
-            Dictionary<string, int> firstGame = Day2.GetListOfAllGames(FetchData.ChopToList('\n', testInput).ToList()).First();
+            Dictionary<string, int> firstGame = Day2.GetListOfAllGames(ParseData.ChopToList('\n', testInput).ToList()).First();
             var blueContent = (firstGame.ContainsKey("blue")) ? firstGame["blue"] : 0;
 
             Assert.Equal(6, blueContent);
@@ -31,7 +31,7 @@ namespace AdventOfCode2023Tests
                 { "blue", 14 }
             };
 
-            var sum = Day2.GetIndexesOfSuccessfulGames(FetchData.ChopToList('\n', testInput).ToList(), ourCubes).Sum();
+            var sum = Day2.GetIndexesOfSuccessfulGames(ParseData.ChopToList('\n', testInput).ToList(), ourCubes).Sum();
             Assert.Equal(8, sum);
         }
 
@@ -42,7 +42,7 @@ namespace AdventOfCode2023Tests
         [InlineData(5, 36)]
         public void SumMinimumCubesPower_GamesTwoThroughFive_GetCorrectResult(int oneBasedIndex, int powerValue)
         {
-            var gameData = Day2.GetListOfAllGames(FetchData.ChopToList('\n', testInput).ToList()).ToList();
+            var gameData = Day2.GetListOfAllGames(ParseData.ChopToList('\n', testInput).ToList()).ToList();
 
             Assert.Equal(powerValue, Day2.ComputePower(gameData[oneBasedIndex - 1]));
         }

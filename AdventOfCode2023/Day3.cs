@@ -46,9 +46,9 @@ namespace AdventOfCode2023
         public static bool IsPartNumber(Number n, IEnumerable<string> map) =>
             Mapping.GetAndPadNumber(map, n.Position.Y, n.Position.X, n.Length, '.').Any(x => HasPartSymbol(x));
 
-        public static int SumFirstPartNumbers(string file) => SumPartNumbers(FetchData.ReadList(file));
+        public static int SumFirstPartNumbers(string file) => SumPartNumbers(ParseData.ReadList(file));
 
-        public static long SumSecondPartNumbers(string file) => SumGearPoints(FetchData.ReadList(file));
+        public static long SumSecondPartNumbers(string file) => SumGearPoints(ParseData.ReadList(file));
 
         public static long SumGearPoints(IEnumerable<string> list)
         {

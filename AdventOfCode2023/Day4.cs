@@ -19,7 +19,7 @@
         public static IEnumerable<int> CountScratchCardsWonBy(string v, int cardNumber) => Enumerable.Range(cardNumber + 1, ScratchCardsWon(v).Count());
 
         public static long SumFirstPartNumbers(string file) =>
-            SumTotalScratchWinnings(FetchData.ReadList(file));
+            SumTotalScratchWinnings(ParseData.ReadList(file));
 
         private static long SumTotalScratchWinnings(IEnumerable<string> scratchCardList)
         {
@@ -31,7 +31,7 @@
             return sum;
         }
 
-        public static int SumScratchCards(string file) => SumScratchCardWins(FetchData.ReadList(file));
+        public static int SumScratchCards(string file) => SumScratchCardWins(ParseData.ReadList(file));
 
         public static int SumScratchCardWins(IEnumerable<string> scratchCardList)
         {

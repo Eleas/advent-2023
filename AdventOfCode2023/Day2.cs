@@ -20,7 +20,7 @@ namespace AdventOfCode2023
     public class Day2
     {
         public static List<Dictionary<string, int>> GetListOfAllGames(List<string> input) =>
-            FetchData.GetPrunedList(':', input).Select(x => ConstructGameSet(x)).ToList();
+            ParseData.GetPrunedList(':', input).Select(x => ConstructGameSet(x)).ToList();
 
         public static List<int> GetIndexesOfSuccessfulGames(List<string> input, Dictionary<string, int> ourCubes)
         {
@@ -36,11 +36,11 @@ namespace AdventOfCode2023
         }
 
         public static int SumFirstIndexes(string file) =>
-            GetIndexesOfSuccessfulGames(FetchData.ReadList(file).ToList(), ConstructGameSet("12 red, 13 green, 14 blue")).Sum();
+            GetIndexesOfSuccessfulGames(ParseData.ReadList(file).ToList(), ConstructGameSet("12 red, 13 green, 14 blue")).Sum();
 
         public static int SumSecondValues(string file)
         {
-            var input = FetchData.ReadList(file).ToList();
+            var input = ParseData.ReadList(file).ToList();
             var games = Day2.GetListOfAllGames(input).ToList();
 
             return games.Sum(game => game.Select(x => x.Value).Aggregate((a, x) => a * x));
@@ -56,9 +56,9 @@ namespace AdventOfCode2023
         private static Dictionary<string, int> ConstructGameSet(string list)
         {
             var colorList = ColorList(Colors);
-            var sets = FetchData.ChopToList(';', list);
+            var sets = ParseData.ChopToList(';', list);
 
-            return sets.SelectMany(set => FetchData.ChopToList(',', set))
+            return sets.SelectMany(set => ParseData.ChopToList(',', set))
                        .SelectMany(item => colorList.Where(c => item.EndsWith(c))
                                                     .Select(c => new { Color = c, Value = int.Parse(item[..item.IndexOf(' ')]) }))
                        .GroupBy(x => x.Color)

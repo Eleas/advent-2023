@@ -23,7 +23,7 @@ namespace AdventOfCode2023Tests
         public void GetPositionOfSymbols_Testinput_FindAllAsterisks()
         {
             var asterisks = Mapping.GetPositionOfSymbols(c => c == '*',
-                FetchData.ChopToList('\n', _schematic));
+                ParseData.ChopToList('\n', _schematic));
 
             Assert.Equal(new Point(3, 1), asterisks.First());
         }
@@ -38,8 +38,8 @@ namespace AdventOfCode2023Tests
             .......#....
             """;
 
-            var actual = Mapping.GetAndPadLine(FetchData.ChopToList('\n', _schematic), 2, '.');
-            Assert.Equal(FetchData.ChopToList('\n', expected), actual);
+            var actual = Mapping.GetAndPadLine(ParseData.ChopToList('\n', _schematic), 2, '.');
+            Assert.Equal(ParseData.ChopToList('\n', expected), actual);
         }
 
         [Fact]
@@ -52,8 +52,8 @@ namespace AdventOfCode2023Tests
             ....*.......
             """;
 
-            var actual = Mapping.GetAndPadLine(FetchData.ChopToList('\n', _schematic), 0, '.');
-            Assert.Equal(FetchData.ChopToList('\n', expected), actual);
+            var actual = Mapping.GetAndPadLine(ParseData.ChopToList('\n', _schematic), 0, '.');
+            Assert.Equal(ParseData.ChopToList('\n', expected), actual);
         }
 
         [Fact]
@@ -66,14 +66,14 @@ namespace AdventOfCode2023Tests
             ............
             """;
 
-            var actual = Mapping.GetAndPadLine(FetchData.ChopToList('\n', _schematic), 9, '.');
-            Assert.Equal(FetchData.ChopToList('\n', expected), actual);
+            var actual = Mapping.GetAndPadLine(ParseData.ChopToList('\n', _schematic), 9, '.');
+            Assert.Equal(ParseData.ChopToList('\n', expected), actual);
         }
 
         [Fact]
         public void GetNeighbors_OffByOne_Fails()
         {
-            var list = FetchData.ChopToList('\n', _schematic);
+            var list = ParseData.ChopToList('\n', _schematic);
             var validNumbers = Day3.ListNumbers(list);
 
             var neighbors = Mapping.GetNeighbors(validNumbers, new Point(5, 8));

@@ -33,10 +33,10 @@
                     0;
 
         public static int SumFirstRange(string file) =>
-            FetchData.ReadList(file).Sum(x => GetFirstLastAsNumber(x));
+            ParseData.ReadList(file).Sum(x => GetFirstLastAsNumber(x));
 
         public static int SumSecondRange(string file) =>
-            FetchData.ReadList(file).Sum(x => GetFirstLastAsNumberEnhanced(x));
+            ParseData.ReadList(file).Sum(x => GetFirstLastAsNumberEnhanced(x));
 
         /// <summary>
         /// Checks whether position p in line is a number, whether

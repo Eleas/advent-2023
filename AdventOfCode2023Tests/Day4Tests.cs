@@ -48,7 +48,7 @@ namespace AdventOfCode2023Tests
         [Fact]
         public static void ScratchCardsWonBy_MultipleTimes_ComputeTotalCards()
         {
-            var sum = Day4.SumScratchCardWins(FetchData.ChopToList('\n', scratchCards));
+            var sum = Day4.SumScratchCardWins(ParseData.ChopToList('\n', scratchCards));
 
             Assert.Equal(30, sum);
         }
