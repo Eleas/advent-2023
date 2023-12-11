@@ -7,7 +7,7 @@ namespace AdventOfCode2023Tests
         [Fact]
         public void NumberNameSequence_FromOneToNine_GetCorrectResponse()
         {
-            var actual = Generate.NumberNameSequence(1, 9);
+            var actual = Generate.AscendingNumberSequence(1, 9);
             List<string> expected = new () { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
             Assert.Equal(expected, actual);
         }

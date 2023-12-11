@@ -15,23 +15,23 @@ namespace AdventOfCode2023Tests
         [Fact]
         public void GetListOfAllGames_TestInput_GetCorrectCountOfBlues()
         {
-            Dictionary<string, int> firstGame = Day2.GetListOfAllGames(FetchData.ChopToList('\n',testInput).ToList()).First();
+            Dictionary<string, int> firstGame = Day2.GetListOfAllGames(FetchData.ChopToList('\n', testInput).ToList()).First();
             var blueContent = (firstGame.ContainsKey("blue")) ? firstGame["blue"] : 0;
 
             Assert.Equal(6, blueContent);
         }
 
         [Fact]
-        public void GetIndexOfSuccessfulGames_MarbleListAndGameRecord_SumOfValidGameIds()
+        public void GetIndexOfSuccessfulGames_CubeListAndGameRecord_SumOfValidGameIds()
         {
-            var ourMarbles = new Dictionary<string, int>()
+            var ourCubes = new Dictionary<string, int>()
             {
                 { "red", 12 },
                 { "green", 13 },
                 { "blue", 14 }
             };
 
-            var sum = Day2.GetIndexesOfSuccessfulGames(FetchData.ChopToList('\n',testInput).ToList(), ourMarbles).Sum();
+            var sum = Day2.GetIndexesOfSuccessfulGames(FetchData.ChopToList('\n', testInput).ToList(), ourCubes).Sum();
             Assert.Equal(8, sum);
         }
 

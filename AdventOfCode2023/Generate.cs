@@ -2,6 +2,15 @@
 {
     public class Generate
     {
+        /// <summary>
+        /// We expand this to cover all numbers, but only when we 
+        /// have the need. A little exercise in minimalism, right?
+        /// </summary>
+        /// <param name="number">Integer to convert to text.</param>
+        /// <returns>Text version of the number.</returns>
+        /// <exception cref="NotImplementedException">Numbers. Too many 
+        /// numbers. Numbers everywhere...
+        /// </exception>
         private static string NumToString(int number) =>
         number switch
         {
@@ -22,7 +31,14 @@
             _ => throw new NotImplementedException()
         };
 
-        public static IEnumerable<string> NumberNameSequence(int begin, int end)
+        /// <summary>
+        /// From one number to another.
+        /// </summary>
+        /// <param name="begin">Start number.</param>
+        /// <param name="end">End number.</param>
+        /// <returns>A sequence of numbers, but 
+        /// as words.</returns>
+        public static IEnumerable<string> AscendingNumberSequence(int begin, int end)
         {
             for (int i = begin; i <= end; i++)
                 yield return NumToString(i);

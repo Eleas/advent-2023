@@ -1,5 +1,12 @@
 ﻿namespace AdventOfCode2023
 {
+    /// <summary>
+    /// First tasks is to get the first and last digit of each
+    /// line. 
+    /// 
+    /// The Enhanced version will read that digit in either numeric
+    /// symbol or written as a word.
+    /// </summary>
     public class Day1
     {
         /// <summary>
@@ -9,19 +16,27 @@
         /// <returns>First and last literal digit found.</returns>
         public static int GetFirstLastAsNumber(string line)
         {
-            if (line == null || line == string.Empty) { return 0; }
+            if (string.IsNullOrEmpty(line)) return 0;
 
-            string numbers = string.Concat(line.Where(char.IsDigit));
-            return ((numbers?.First() - '0' ?? 0) * 10) + numbers?.Last() - '0' ?? 0;
+            var digits = line.Where(char.IsDigit).ToList();
+
+            if (!digits.Any()) return 0;
+
+            int firstDigit = digits.First() - '0';
+            int lastDigit = digits.Last() - '0';
+
+            return firstDigit * 10 + lastDigit;
         }
 
         public static int GetFirstLastAsNumberEnhanced(string line) => line != null ?
                     (GetUpperDigit(line) * 10) + GetLowerDigit(line) :
                     0;
 
-        public static int SumFirstRange(string file) => FetchData.ReadList(file).Sum(x => GetFirstLastAsNumber(x));
+        public static int SumFirstRange(string file) =>
+            FetchData.ReadList(file).Sum(x => GetFirstLastAsNumber(x));
 
-        public static int SumSecondRange(string file) => FetchData.ReadList(file).Sum(x => GetFirstLastAsNumberEnhanced(x));
+        public static int SumSecondRange(string file) =>
+            FetchData.ReadList(file).Sum(x => GetFirstLastAsNumberEnhanced(x));
 
         /// <summary>
         /// Checks whether position p in line is a number, whether
@@ -34,12 +49,11 @@
         {
             if (char.IsDigit(line[p]))
             {
-                char digit = (char)(line[p] - '0');
-                return digit;
+                return (char)(line[p] - '0');
             }
             else
             {
-                var actualDigit = Generate.NumberNameSequence(1, 9).Select((d, index) => new { d, index })
+                var actualDigit = Generate.AscendingNumberSequence(1, 9).Select((d, index) => new { d, index })
                                         .FirstOrDefault(x => line[p..].StartsWith(x.d));
 
                 return actualDigit != null ? actualDigit.index + 1 : 0;
