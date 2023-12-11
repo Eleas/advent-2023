@@ -22,6 +22,10 @@
             Console.WriteLine($"First number is {Day3.SumFirstPartNumbers("Data/input_day3.txt")}\n" +
                 $"The second is {Day3.SumSecondPartNumbers("Data/input_day3.txt")}\n");
 
+            Console.WriteLine($"Day 4: ");
+            Console.WriteLine($"First sum is {Day4.SumFirstPartNumbers("Data/input_day4.txt")}\n" +
+                $"The second is {Day4.SumScratchCards("Data/input_day4.txt")}\n");
+
         }
     }
 }
