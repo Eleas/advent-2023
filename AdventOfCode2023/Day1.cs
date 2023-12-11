@@ -20,7 +20,7 @@
 
             var digits = line.Where(char.IsDigit).ToList();
 
-            if (!digits.Any()) return 0;
+            if (!digits.Any()) throw new InvalidOperationException();
 
             int firstDigit = digits.First() - '0';
             int lastDigit = digits.Last() - '0';
@@ -51,13 +51,10 @@
             {
                 return (char)(line[p] - '0');
             }
-            else
-            {
-                var actualDigit = Generate.AscendingNumberSequence(1, 9).Select((d, index) => new { d, index })
-                                        .FirstOrDefault(x => line[p..].StartsWith(x.d));
+            var actualDigit = Generate.AscendingNumberSequence(1, 9).Select((d, index) => new { d, index })
+                                    .FirstOrDefault(x => line[p..].StartsWith(x.d));
 
-                return actualDigit != null ? actualDigit.index + 1 : 0;
-            }
+            return actualDigit != null ? actualDigit.index + 1 : 0;
         }
 
         private static int GetUpperDigit(string line) =>

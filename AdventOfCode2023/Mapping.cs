@@ -14,12 +14,10 @@ namespace AdventOfCode2023
         /// <param name="map">Several strings of equal length.</param>
         /// <returns>A collection of points that match what you
         /// were looking for.</returns>
-        public static IEnumerable<Point> GetPositionOfSymbols(Func<char, bool> specifiedCharacter, IEnumerable<string> map)
-        {
-            return map.SelectMany((row, y) => row.Select((character, x) => new { character, x, y }))
+        public static IEnumerable<Point> GetPositionOfSymbols(Func<char, bool> specifiedCharacter, IEnumerable<string> map) =>
+            map.SelectMany((row, y) => row.Select((character, x) => new { character, x, y }))
                       .Where(item => specifiedCharacter(item.character))
                       .Select(item => new Point(item.x, item.y));
-        }
 
         /// <summary>
         /// Sometimes, you need to surround a list of strings with
