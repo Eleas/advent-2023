@@ -29,12 +29,56 @@ namespace AdventOfCode2023Tests
         }
 
         [Fact]
-        public void PadMap_Map_PaddedMap()
+        public void GetAndPadLine_MiddleOfMap_GetThreeLines()
         {
-            var padded = Mapping.PadMap(FetchData.ChopToList('\n', _schematic), '.');
+            var expected =
+            """
+            ....*.......
+            ...35..633..
+            .......#....
+            """;
 
-            Assert.Equal(new string('.', 12), padded.First());
-            Assert.StartsWith("....*", padded.ElementAt(2));
+            var actual = Mapping.GetAndPadLine(FetchData.ChopToList('\n', _schematic), 2, '.');
+            Assert.Equal(FetchData.ChopToList('\n', expected), actual);
+        }
+
+        [Fact]
+        public void GetAndPadLine_StartOfMap_GetThreeLines()
+        {
+            var expected =
+            """
+            ............
+            .467..114...
+            ....*.......
+            """;
+
+            var actual = Mapping.GetAndPadLine(FetchData.ChopToList('\n', _schematic), 0, '.');
+            Assert.Equal(FetchData.ChopToList('\n', expected), actual);
+        }
+
+        [Fact]
+        public void GetAndPadLine_EndOfMap_GetThreeLines()
+        {
+            var expected =
+            """
+            ....$.*.....
+            ..664.598...
+            ............
+            """;
+
+            var actual = Mapping.GetAndPadLine(FetchData.ChopToList('\n', _schematic), 9, '.');
+            Assert.Equal(FetchData.ChopToList('\n', expected), actual);
+        }
+
+        [Fact]
+        public void GetNeighbors_OffByOne_Fails()
+        {
+            var list = FetchData.ChopToList('\n', _schematic);
+            var validNumbers = Day3.ListNumbers(list);
+
+            var neighbors = Mapping.GetNeighbors(validNumbers, new Point(5, 8));
+
+            Assert.Equal(2, neighbors.Count());
         }
     }
 }

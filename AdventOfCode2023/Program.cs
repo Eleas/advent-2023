@@ -19,8 +19,8 @@
                 $"The second is {Day2.SumSecondValues("Data/input_day2.txt")}\n");
 
             Console.WriteLine($"Day 3: ");
-            Console.WriteLine($"First number is {"unknown"}\n" +
-                $"The second is {"unknown"}\n");
+            Console.WriteLine($"First number is {Day3.SumFirstPartNumbers("Data/input_day3.txt")}\n" +
+                $"The second is {Day3.SumSecondPartNumbers("Data/input_day3.txt")}\n");
 
         }
     }
