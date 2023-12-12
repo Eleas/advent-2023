@@ -54,10 +54,26 @@
         public static IEnumerable<string> ChopToList(char delimiter, string text) =>
             text.Split(delimiter, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
 
-
+        /// <summary>
+        /// Grabs a part of a text.
+        /// </summary>
+        /// <param name="totalText">Text to use.</param>
+        /// <param name="beginning">Beginning part to match.</param>
+        /// <param name="end">End to match, default empty line.</param>
+        /// <returns>Text in question.</returns>
         public static IEnumerable<string> GetSection(string totalText, string beginning, string? end = null)
         {
-            string contents = totalText.Substring(totalText.IndexOf(beginning));
+            int startIndex = totalText.IndexOf(beginning);
+            int endIndex = totalText.IndexOf(end ?? new string("\r\n\r\n"), startIndex + beginning.Length);
+
+            if (startIndex == -1) { yield return string.Empty; }
+
+            string finalString = endIndex != -1 ? totalText[startIndex..endIndex] : totalText[startIndex..];
+
+            foreach (var item in ParseData.ChopToList('\n', finalString))
+            {
+                yield return item;
+            }
         }
     }
 }

@@ -4,7 +4,7 @@ namespace AdventOfCode2023Tests
 {
     public class Day5Tests
     {
-        private static string _almanac = """
+        private static readonly string _almanac = """
             seeds: 79 14 55 13
 
             seed-to-soil map:
