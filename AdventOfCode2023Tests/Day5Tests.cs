@@ -40,15 +40,37 @@ namespace AdventOfCode2023Tests
             56 93 4
             """;
 
-        [Fact]
-        public static void SeedToSoil_TestAlmanac_DescribedRangeOfValues()
+        [Theory]
+        [InlineData(10, 10)]
+        [InlineData(49, 49)]
+        [InlineData(51, 99)]
+        [InlineData(72, 70)]
+        public static void Translate_SeedToSoilNumbers_GetCorrectSpan(int inData, int outData)
         {
-            List<int> table = Day5.CreateSeedSoilTable(ParseData.ChopToList('\n', _almanac));
+            // Arrange
+            List<TranslationRule> rules = new() { new TranslationRule(50, 98, 2), new TranslationRule(52, 50, 48) };
+            Translator seedToSoil = new(rules);
 
-            Assert.Equal(0, table[0]);
-            Assert.Equal(52, table[50]);
-            Assert.Equal(99, table[97]);
-            Assert.Equal(50, table[98]);
+            // Act
+            Assert.Equal(outData, seedToSoil.Translate(inData));
         }
+
+        [Theory]
+        [InlineData(10, 10)]
+        [InlineData(49, 49)]
+        [InlineData(51, 99)]
+        [InlineData(72, 70)]
+        public static void Translate_SeedToSoilNumbersWithStringInput_GetCorrectSpan(int inData, int outData)
+        {
+            // Arrange
+            Translator seedToSoil = new("""
+                50 98 2
+                52 50 48
+                """);
+
+            // Act
+            Assert.Equal(outData, seedToSoil.Translate(inData));
+        }
+
     }
 }

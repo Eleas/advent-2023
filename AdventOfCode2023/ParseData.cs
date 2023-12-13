@@ -63,7 +63,7 @@
         /// <returns>Text in question.</returns>
         public static IEnumerable<string> GetSection(string totalText, string beginning, string? end = null)
         {
-            int startIndex = totalText.IndexOf(beginning);
+            int startIndex = totalText.IndexOf(beginning) + beginning.Length;
             int endIndex = totalText.IndexOf(end ?? new string("\r\n\r\n"), startIndex + beginning.Length);
 
             if (startIndex == -1) { yield return string.Empty; }
