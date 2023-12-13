@@ -1,6 +1,6 @@
 ﻿namespace AdventOfCode2023
 {
-    public record TranslationRule(long Source, long Destination, long Steps);
+    public record TranslationRule(long Destination, long Source, long Steps);
 
     public class Translator
     {

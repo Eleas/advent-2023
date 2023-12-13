@@ -26,6 +26,9 @@
             Console.WriteLine($"First sum is {Day4.SumFirstPartNumbers("Data/input_day4.txt")}\n" +
                 $"The second is {Day4.SumScratchCards("Data/input_day4.txt")}\n");
 
+            Console.WriteLine($"Day 5: ");
+            Console.WriteLine($"First lowest number is {Day5.GetLowestSeedValue("Data/input_day5.txt")}\n");
+
         }
     }
 }

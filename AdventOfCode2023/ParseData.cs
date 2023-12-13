@@ -18,11 +18,27 @@
 
                 if (line != null && line != string.Empty)
                 {
-                    yield return (trim) ? line.Trim() : line;
+                    yield return (trim) ? line.Trim().ReplaceLineEndings() : line.ReplaceLineEndings();
                 }
             } while (line != null);
 
             sr?.Close();
+        }
+
+        /// <summary>
+        /// Reads input.
+        /// </summary>
+        /// <returns>String, with the line endings normalized to account 
+        /// for Windows newline shenanigans.</returns>
+        public static string Read(string path)
+        {
+            string? line;
+            var sr = new StreamReader(path)
+                ?? throw new FileNotFoundException();
+
+            line = File.ReadAllText(path);
+            sr?.Close();
+            return line.ReplaceLineEndings();
         }
 
         /// <summary>
@@ -63,12 +79,16 @@
         /// <returns>Text in question.</returns>
         public static IEnumerable<string> GetSection(string totalText, string beginning, string? end = null)
         {
-            int startIndex = totalText.IndexOf(beginning) + beginning.Length;
-            int endIndex = totalText.IndexOf(end ?? new string("\r\n\r\n"), startIndex + beginning.Length);
+            int startIndex = totalText.IndexOf(beginning) + beginning.Length + 1;
+            var actualEndString = end ?? new string("\r\n\r\n");
+
+            var contents = totalText[startIndex..];
+
+            int endIndex = contents.IndexOf(actualEndString);
 
             if (startIndex == -1) { yield return string.Empty; }
 
-            string finalString = endIndex != -1 ? totalText[startIndex..endIndex] : totalText[startIndex..];
+            string finalString = endIndex != -1 ? contents[..endIndex] : contents;
 
             foreach (var item in ParseData.ChopToList('\n', finalString))
             {
